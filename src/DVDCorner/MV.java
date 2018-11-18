@@ -9,7 +9,7 @@ package DVDCorner;
  *
  * @author YipYi
  */
-public class MV extends DVD{
+public class MV extends DVD {
 
     private String singer;
 
@@ -28,6 +28,6 @@ public class MV extends DVD{
 
     @Override
     public String toString() {
-        return "MV{" + "singer=" + singer + '}';
+        return getDvdID() + "\t" + getTitle() + "\t\t" + getLength() + "\t\t" + getNumAvailable() + "\t" + getSinger();
     }
 }
