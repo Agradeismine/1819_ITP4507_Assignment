@@ -1,2 +1,20 @@
+c
+mo
 1001, Forrest Gump, 182, 6, Robert Zemeckis
+c
+mv
 2001, One Night Only, 78, 1, Bee Gees
+a
+1001
+2
+a
+2001
+1
+s
+a
+l
+1001
+l
+2001
+s
+a   //available: 7, 0

@@ -25,18 +25,19 @@ public class Main {
      */
     public static void main(String[] args) {
         Vector _DVD = new Vector();     //store the DVD
-        Stack stack = new Stack();    //store the operation command
+        Stack operHist = new Stack();    //store the operation command
 
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
         String command;
-        String[] factoryCmd = {"DVDCorner.CreateDVDFactory", "DVDCorner.ShowDVDFactory", "DVDCorner.DonateDVDFactory", "DVDCorner.LendDVDFactory", "DVDCorner.ReturnDVDFactory"};
+        String[] factoryCmd = {"DVDCorner.CreateDVDFactory", "DVDCorner.ShowDVDFactory", "DVDCorner.AcceptDvdDonateFactory", "DVDCorner.LendDVDFactory", "DVDCorner.ReturnDVDFactory"};
         String[] inputCmd = {"c", "s", "a", "l", "g", "u", "r", "d", "x"};
         Set<String> accept = new HashSet<String>(Arrays.asList(inputCmd));
         String type = null;
         String[] DVDtype = {"mo", "mv"};
         String[] DVDCreateFactory = {"DVDCorner.CreateMovieFactory", "DVDCorner.CreateMvFactory"};
         DRSCommand drsCmd;
+        boolean notChg = false;
 
         boolean cont = true;
         while (cont) {
@@ -49,8 +50,11 @@ public class Main {
                     if (accept.contains(command)) {             //check correct command
                         if (command.equals("x")) {
                             cont = false;
+                        } else if (command.equals("u")) {                          //undo
+                            drsCmd = (DRSCommand) operHist.pop();
+                            drsCmd.undo();
                         } else {
-                            for (int i = 0; i < factoryCmd.length; i++) {   //not include undo, redo, delete
+                            for (int i = 0; i < factoryCmd.length; i++) {   //not include redo, delete
                                 if (command.equals(inputCmd[i])) {    //check which command should be executed
                                     Constructor c = Class.forName(factoryCmd[i]).getConstructor(Vector.class);
                                     DRSFactory df = (DRSFactory) c.newInstance(_DVD);
@@ -58,7 +62,7 @@ public class Main {
                                     drsCmd = df.FactoryMethod();
                                     drsCmd.execute();
                                     if (!(drsCmd instanceof ShowDVD)) {
-                                        stack.add(drsCmd);
+                                        operHist.push(drsCmd);
                                     }
                                 }
                             }

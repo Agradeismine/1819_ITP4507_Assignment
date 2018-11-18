@@ -1,0 +1,4 @@
+1. Lending a DVD with zero available copy will display a warning message. Note that this invalid
+operation should not be shown in Undo List afterward.	未做,要唔放入stack
+
+2. undo redo list 應該用stack 儲住command 嘅toString method?

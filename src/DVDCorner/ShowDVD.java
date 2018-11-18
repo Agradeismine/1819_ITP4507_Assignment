@@ -35,18 +35,19 @@ public class ShowDVD implements DRSCommand {
                 for (int i = 0; i < _DVD.size(); i++) {
                     System.out.println(((DVD) _DVD.elementAt(i)).toString());
                 }
+                System.out.println();
             } else if (Library.isInteger(line)) {
                 for (int i = 0; i < _DVD.size(); i++) {
                     DVD dvd = (DVD) _DVD.elementAt(i);
-                    if (((DVD) _DVD.elementAt(i)).getDvdID() == Integer.parseInt(line)) {
-                        System.out.println("ID: " + ((DVD) _DVD.elementAt(i)).getDvdID());
-                        System.out.println("Title: " + ((DVD) _DVD.elementAt(i)).getTitle());
-                        System.out.println("Length: " + ((DVD) _DVD.elementAt(i)).getLength() + " min(s)");
-                        System.out.println("Number of available copies: " + ((DVD) _DVD.elementAt(i)).getNumAvailable());
+                    if (dvd.getDvdID() == Integer.parseInt(line)) {
+                        System.out.println("ID: " + dvd.getDvdID());
+                        System.out.println("Title: " + dvd.getTitle());
+                        System.out.println("Length: " + dvd.getLength() + " min(s)");
+                        System.out.println("Number of available copies: " + dvd.getNumAvailable());
                         if (dvd instanceof Movie) {
-                            System.out.println("Director: " + ((Movie) _DVD.elementAt(i)).getDirector());
+                            System.out.println("Director: " + ((Movie) dvd).getDirector()+"\n");
                         } else if (dvd instanceof MV) {
-                            System.out.println("Director: " + ((MV) _DVD.elementAt(i)).getSinger());
+                            System.out.println("Director: " + ((MV) dvd).getSinger()+"\n");
                         }
                     }
                 }

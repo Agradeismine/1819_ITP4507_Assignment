@@ -13,15 +13,15 @@ import java.util.Vector;
  *
  * @author YipYi
  */
-public class ReturnDVDFactory extends DRSFactory {
+public class AcceptDvdDonateFactory extends DRSFactory {
 
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
     Vector _DVD;
-    int id;
     boolean cont = true;
+    int id, numDonated;
 
-    public ReturnDVDFactory(Vector _DVD) {
+    public AcceptDvdDonateFactory(Vector _DVD) {
         this._DVD = _DVD;
     }
 
@@ -32,15 +32,17 @@ public class ReturnDVDFactory extends DRSFactory {
                 while (cont) {
                     System.out.println("Enter ID:");
                     id = Integer.parseInt(br.readLine());
-                    cont = false;
+                    System.out.println("Enter number of copies donated:");
+                    numDonated = Integer.parseInt(br.readLine());
 
+
+                    cont = false;
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
-
-        return new ReturnDVD(_DVD, id);
+        return new AcceptDvdDonate(_DVD, id, numDonated);
     }
 
 }
