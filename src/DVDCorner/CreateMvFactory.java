@@ -12,6 +12,7 @@ public class CreateMvFactory extends DRSFactory {
 
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
+    Caretaker ct;
     Vector _DVD;
     int dvdID = 0, length = 0, numAvailable = 0;
     String title = null, singer = null;
@@ -19,7 +20,8 @@ public class CreateMvFactory extends DRSFactory {
     String[] strs;
     boolean cont = true;
 
-    public CreateMvFactory(Vector _DVD) {
+    public CreateMvFactory(Caretaker ct, Vector _DVD) {
+        this.ct = ct;
         this._DVD = _DVD;
     }
 
@@ -60,7 +62,7 @@ public class CreateMvFactory extends DRSFactory {
             }
 
         }
-        return new MvCreator(_DVD, dvdID, title, length, numAvailable, singer);
+        return new MvCreator(ct, _DVD, dvdID, title, length, numAvailable, singer);
     }
 
     public boolean isInteger(String s) {

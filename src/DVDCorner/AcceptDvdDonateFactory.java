@@ -17,11 +17,13 @@ public class AcceptDvdDonateFactory extends DRSFactory {
 
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
+    Caretaker ct;
     Vector _DVD;
     boolean cont = true;
     int id, numDonated;
 
-    public AcceptDvdDonateFactory(Vector _DVD) {
+    public AcceptDvdDonateFactory(Caretaker ct, Vector _DVD) {
+        this.ct = ct;
         this._DVD = _DVD;
     }
 
@@ -34,15 +36,13 @@ public class AcceptDvdDonateFactory extends DRSFactory {
                     id = Integer.parseInt(br.readLine());
                     System.out.println("Enter number of copies donated:");
                     numDonated = Integer.parseInt(br.readLine());
-
-
                     cont = false;
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                System.out.println("Please input correct ID.");
             }
         }
-        return new AcceptDvdDonate(_DVD, id, numDonated);
+        return new AcceptDvdDonate(ct, _DVD, id, numDonated);
     }
 
 }

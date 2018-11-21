@@ -18,6 +18,7 @@ public class CreateMovieFactory extends DRSFactory {
 
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
+    Caretaker ct;
     Vector _DVD;
     int dvdID = 0, length = 0, numAvailable = 0;
     String title = null, director = null;   //type = null,
@@ -25,7 +26,8 @@ public class CreateMovieFactory extends DRSFactory {
     String[] strs;
     boolean cont = true;
 
-    public CreateMovieFactory(Vector _DVD) {
+    public CreateMovieFactory(Caretaker ct, Vector _DVD) {    //add caretaker
+        this.ct = ct;
         this._DVD = _DVD;
     }
 
@@ -70,7 +72,7 @@ public class CreateMovieFactory extends DRSFactory {
             }
 
         }
-        return new MovieCreator(_DVD, dvdID, title, length, numAvailable, director);
+        return new MovieCreator(ct, _DVD, dvdID, title, length, numAvailable, director);    //add caretaker
     }
 
     public boolean isInteger(String s) {

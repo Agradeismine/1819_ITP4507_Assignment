@@ -18,12 +18,14 @@ public class LendDVDFactory extends DRSFactory {
 
     InputStreamReader is = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(is);
+    Caretaker ct;
     Vector _DVD;
     Stack operHist;
     int id;
     boolean cont = true;
 
-    public LendDVDFactory(Vector _DVD) {
+    public LendDVDFactory(Caretaker ct, Vector _DVD) {
+        this.ct=ct;
         this._DVD = _DVD;
 //        this.operHist = operHist;
     }
@@ -39,10 +41,10 @@ public class LendDVDFactory extends DRSFactory {
 
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                System.out.println("Please input correct ID.");
             }
         }
-        return new LendDVD(_DVD, id);
+        return new LendDVD(ct, _DVD, id);
     }
 
 }

@@ -7,6 +7,8 @@ package DVDCorner;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,13 +25,15 @@ public class CreateDVDFactory extends DRSFactory {
     String type = null;
     String[] DVDtype = {"mo", "mv"};
     String[] DVDCreateFactory = {"DVDCorner.CreateMovieFactory", "DVDCorner.CreateMvFactory"};
+    Caretaker ct;
     Vector _DVD;
-    DRSFactory df;
+    DRSFactory df = null;
 
     public CreateDVDFactory() {
     }
 
-    public CreateDVDFactory(Vector _DVD) {
+    public CreateDVDFactory(Caretaker ct, Vector _DVD) {
+        this.ct = ct;
         this._DVD = _DVD;
     }
 
@@ -38,19 +42,14 @@ public class CreateDVDFactory extends DRSFactory {
         try {
             System.out.println("Enter DVD type (mo=movie/mv=MV):");
             type = br.readLine();
+            List<String> list = Arrays.asList(DVDtype);
+
             for (int i = 0; i < DVDtype.length; i++) {
                 if (DVDtype[i].equals(type)) {
-                    Constructor c = Class.forName(DVDCreateFactory[i]).getConstructor(Vector.class);
-                    df = (DRSFactory) c.newInstance(_DVD);
+                    Constructor c = Class.forName(DVDCreateFactory[i]).getConstructor(Caretaker.class, Vector.class);
+                    df = (DRSFactory) c.newInstance(ct, _DVD);
                 }
             }
-
-        }catch(NullPointerException ex){
-            ex.printStackTrace();
-            System.out.println("No this type");
-        } 
-        catch (IOException ex) {
-            ex.printStackTrace();
 
         } catch (Exception ex) {
             ex.printStackTrace();

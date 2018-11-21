@@ -13,8 +13,10 @@ import java.util.Vector;
  */
 public class ShowDVDFactory extends DRSFactory{
     Vector _DVD;
+    Caretaker ct;
 
-    public ShowDVDFactory(Vector _DVD) {
+    public ShowDVDFactory(Caretaker ct, Vector _DVD) {    //add caretaker
+        this.ct = ct;
         this._DVD = _DVD;
     }
     

@@ -4,6 +4,10 @@ mo
 c
 mv
 2001, One Night Only, 78, 1, Bee Gees
+s
+1001
+s
+a
 a
 1001
 2
@@ -11,10 +15,35 @@ a
 2001
 1
 s
-a
+a   //8, 2
 l
 1001
 l
 2001
+l
+2001
 s
-a   //available: 7, 0
+a       //available: 7, 0
+l
+2001    //display a warning message
+g
+2001
+g
+2001
+s
+a       //7, 2
+d       //9 lists
+u
+d       //8 undo, 1 redo(Get back 2001 One Night Only)
+u
+d
+u
+d
+s
+a       //7, 1
+d
+r
+s
+a       //7, 0
+d       //2 redo
+x

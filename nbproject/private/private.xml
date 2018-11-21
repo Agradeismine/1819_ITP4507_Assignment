@@ -5,15 +5,14 @@
         <group>
             <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/CreateMvFactory.java</file>
             <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/Main.java</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/CreateMovieFactory.java</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/MvCreator.java</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/Movie.java</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/test/TestData.txt</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/MovieCreator.java</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/DVD.java</file>
+            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/ReturnDVDFactory.java</file>
+            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/AcceptDvdDonate.java</file>
+            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/AcceptDvdDonateFactory.java</file>
+            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/LendDVD.java</file>
             <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/ShowDVDFactory.java</file>
+            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/Caretaker.java</file>
             <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/ShowDVD.java</file>
-            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/CreateDVDFactory.java</file>
+            <file>file:/C:/Users/YipYi/Documents/NetBeansProjects/1819_ITP4507_Assignment/src/DVDCorner/LendDVDFactory.java</file>
         </group>
     </open-files>
 </project-private>

@@ -14,12 +14,14 @@ import java.util.Vector;
  */
 public class LendDVD implements DRSCommand {
 
+    Caretaker ct;
     Vector _DVD;
     Stack operHist;
     int id;
     DVD dvd;
 
-    public LendDVD(Vector _DVD, int id) {
+    public LendDVD(Caretaker ct, Vector _DVD, int id) {
+        this.ct = ct;
         this._DVD = _DVD;
         this.id = id;
 //        this.operHist = operHist;
@@ -31,6 +33,7 @@ public class LendDVD implements DRSCommand {
             if (((DVD) _DVD.elementAt(i)).getDvdID() == id) {
                 dvd = ((DVD) _DVD.elementAt(i));
                 if (dvd.getNumAvailable() > 0) {    //Lending a DVD with 1 or more available
+                    ct.save(_DVD, ("Lend " + id + " " + dvd.getTitle()));
                     dvd.setNumAvailable(dvd.getNumAvailable() - 1);
                     System.out.println("Lent out: " + dvd.getTitle());
                     System.out.println("Number of available copies: " + dvd.getNumAvailable() + "\n");
@@ -41,13 +44,5 @@ public class LendDVD implements DRSCommand {
             }
         }
     }
-
-    @Override
-    public void undo() {
-        if (dvd != null) {
-            dvd.setNumAvailable(dvd.getNumAvailable() + 1);
-        }
-    }
-
 
 }

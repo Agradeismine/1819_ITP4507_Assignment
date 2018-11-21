@@ -20,12 +20,10 @@ import java.util.Vector;
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        Vector _DVD = new Vector();     //store the DVD
-        Stack operHist = new Stack();    //store the operation command
+        Vector _DVD = new Vector();         //store the DVD
+        //Stack operHist = new Stack();       //store the operation command
+        Caretaker ct = new Caretaker();     // Prepare a Caretaker for  the undo/redo operation
 
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
@@ -43,6 +41,9 @@ public class Main {
         while (cont) {
             try {
                 while (cont) {
+                    //System.out.println("_origDVD hashCode: " + _DVD.hashCode());     //test
+                    //System.out.println("_origDVD: " + _DVD);     //test
+
                     System.out.println("DVD Record System");
                     System.out.println("Please enter command: [c | s | a | l | g | u | r | d | x]");
                     System.out.println("c = create DVD, s = show DVD, a = accept donation of DVD, l = lend out a DVD, g = get back a returned DVD, u = undo, r = redo, d = display undo/redo list, x = exit system\n");
@@ -51,33 +52,30 @@ public class Main {
                         if (command.equals("x")) {
                             cont = false;
                         } else if (command.equals("u")) {                          //undo
-                            drsCmd = (DRSCommand) operHist.pop();
-                            drsCmd.undo();
+                            ct.undo();
+                        } else if (command.equals("r")) {
+                            ct.redo();
+                        } else if (command.equals("d")) {
+                            ct.showUndoRedoList();
                         } else {
-                            for (int i = 0; i < factoryCmd.length; i++) {   //not include redo, delete
+                            for (int i = 0; i < factoryCmd.length; i++) {
                                 if (command.equals(inputCmd[i])) {    //check which command should be executed
-                                    Constructor c = Class.forName(factoryCmd[i]).getConstructor(Vector.class);
-                                    DRSFactory df = (DRSFactory) c.newInstance(_DVD);
+                                    Constructor c = Class.forName(factoryCmd[i]).getConstructor(Caretaker.class, Vector.class);     //test for moCreate
+                                    DRSFactory df = (DRSFactory) c.newInstance(ct, _DVD);                                           //test for moCreate
                                     //DRSFactory df = (DRSFactory) Class.forName(factoryCmd[i]).newInstance();
                                     drsCmd = df.FactoryMethod();
                                     drsCmd.execute();
-                                    if (!(drsCmd instanceof ShowDVD)) {
-                                        operHist.push(drsCmd);
-                                    }
                                 }
                             }
                         }
 
                     } else {
-                        System.out.println("Please input a correct command!");
+                        System.out.println("No this command!");
                         break;
                     }
-
                 }
-            } catch (NumberFormatException ex) {
-                System.out.println("Please input a correct command!");
             } catch (Exception ex) {
-                ex.printStackTrace();
+                System.out.println("Please input a correct command!");
             }
         }
     }

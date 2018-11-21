@@ -51,15 +51,12 @@ public class ShowDVD implements DRSCommand {
                         }
                     }
                 }
+            }else{
+                System.out.println("Please input correct ID.");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    @Override
-    public void undo() {
-
     }
 
 }
