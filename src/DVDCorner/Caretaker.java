@@ -17,7 +17,7 @@ class Caretaker {
     Stack undoList = new Stack();
     Stack redoList = new Stack();
 
-    void save(Vector _DVD, String info) {  //wrong?
+    void save(Vector _DVD, String info) {
         Memento mem = new Memento(_DVD, info);
 
         undoList.add(mem);
@@ -56,7 +56,7 @@ class Caretaker {
     }
 
     void redo() {
-        if (!redoList.isEmpty()) {     //.size() > 0
+        if (!redoList.isEmpty()) {
             Memento mem = (Memento) redoList.pop();
             mem.redo();
             undoList.push(mem);

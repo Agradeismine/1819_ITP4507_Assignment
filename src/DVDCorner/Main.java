@@ -28,47 +28,29 @@ public class Main {
         InputStreamReader is = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(is);
         String command;
-        String[] factoryCmd = {"DVDCorner.CreateDVDFactory", "DVDCorner.ShowDVDFactory", "DVDCorner.AcceptDvdDonateFactory", "DVDCorner.LendDVDFactory", "DVDCorner.ReturnDVDFactory"};
+        String[] factoryCmd = {"DVDCorner.CreateDVDFactory", "DVDCorner.ShowDVDFactory", "DVDCorner.AcceptDvdDonateFactory", "DVDCorner.LendDVDFactory", "DVDCorner.ReturnDVDFactory", "DVDCorner.UndoFactory", "DVDCorner.RedoFactory", "DVDCorner.showUnRedoListFac", "DVDCorner.ExitFactory"};
         String[] inputCmd = {"c", "s", "a", "l", "g", "u", "r", "d", "x"};
         Set<String> accept = new HashSet<String>(Arrays.asList(inputCmd));
-        String type = null;
         String[] DVDtype = {"mo", "mv"};
         String[] DVDCreateFactory = {"DVDCorner.CreateMovieFactory", "DVDCorner.CreateMvFactory"};
         DRSCommand drsCmd;
-        boolean notChg = false;
 
-        boolean cont = true;
-        while (cont) {
+        while (true) {
             try {
-                while (cont) {
-                    //System.out.println("_origDVD hashCode: " + _DVD.hashCode());     //test
-                    //System.out.println("_origDVD: " + _DVD);     //test
-
+                while (true) {
                     System.out.println("DVD Record System");
                     System.out.println("Please enter command: [c | s | a | l | g | u | r | d | x]");
                     System.out.println("c = create DVD, s = show DVD, a = accept donation of DVD, l = lend out a DVD, g = get back a returned DVD, u = undo, r = redo, d = display undo/redo list, x = exit system\n");
                     command = br.readLine();
                     if (accept.contains(command)) {             //check correct command
-                        if (command.equals("x")) {
-                            cont = false;
-                        } else if (command.equals("u")) {                          //undo
-                            ct.undo();
-                        } else if (command.equals("r")) {
-                            ct.redo();
-                        } else if (command.equals("d")) {
-                            ct.showUndoRedoList();
-                        } else {
-                            for (int i = 0; i < factoryCmd.length; i++) {
-                                if (command.equals(inputCmd[i])) {    //check which command should be executed
-                                    Constructor c = Class.forName(factoryCmd[i]).getConstructor(Caretaker.class, Vector.class);     //test for moCreate
-                                    DRSFactory df = (DRSFactory) c.newInstance(ct, _DVD);                                           //test for moCreate
-                                    //DRSFactory df = (DRSFactory) Class.forName(factoryCmd[i]).newInstance();
-                                    drsCmd = df.FactoryMethod();
-                                    drsCmd.execute();
-                                }
+                        for (int i = 0; i < factoryCmd.length; i++) {
+                            if (command.equals(inputCmd[i])) {    //check which command should be executed
+                                Constructor c = Class.forName(factoryCmd[i]).getConstructor(Caretaker.class, Vector.class);
+                                DRSFactory df = (DRSFactory) c.newInstance(ct, _DVD);
+                                drsCmd = df.FactoryMethod();
+                                drsCmd.execute();
                             }
                         }
-
                     } else {
                         System.out.println("No this command!");
                         break;
